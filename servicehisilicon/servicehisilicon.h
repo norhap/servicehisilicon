@@ -111,6 +111,9 @@ public:
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
 	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
+#ifdef HAVE_ITAPSERVICE
+	RESULT tap(ePtr<iTapService> &ptr) { ptr = nullptr; return -1; }
+#endif
 //	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
 	void setQpipMode(bool, bool) {}
 
