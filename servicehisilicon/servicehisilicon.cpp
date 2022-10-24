@@ -778,8 +778,8 @@ eServiceHisilicon::eServiceHisilicon(eServiceReference ref):
 	{
 		::close(tmp_fd);
 		tmp_fd = -1;	
-		fd0lock = ::open("/dev/null", O_RDONLY | O_CLOEXEC);
-		/* eDebug("[eServiceHisilicon][[eServiceHisilicon]] opening null fd returned: %d", fd0lock); */
+		tmp_fd = ::open("/dev/null", O_RDONLY | O_CLOEXEC);
+		/* eDebug("[eServiceHisilicon][[eServiceHisilicon]] opening null fd returned: %d", tmp_fd); */
 	}
 	if (tmp_fd != -1)
 	{
