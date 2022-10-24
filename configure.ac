@@ -8,8 +8,28 @@ AC_PROG_CXX
 AM_PATH_PYTHON
 AX_PYTHON_DEVEL
 AC_LANG(C++)
-AX_CXX_COMPILE_STDCXX_17([ext],[mandatory])
+
 PKG_CHECK_MODULES(ENIGMA2, enigma2)
+
+AC_ARG_WITH(boxtype,
+	AS_HELP_STRING([--with-boxtype],[build for BOXTYPE, $withval]),
+	[BOXTYPE="$withval"],[BOXTYPE=""])
+AC_SUBST(BOXTYPE)
+AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
+
+AC_ARG_WITH(brandname,
+	AS_HELP_STRING([--with-brandname],[build for MACHINE_BRAND, $withval]),
+	[MACHINE_BRAND="$withval"],[MACHINE_BRAND=""])
+AC_SUBST(MACHINE_BRAND)
+AC_DEFINE_UNQUOTED(MACHINE_BRAND,"$MACHINE_BRAND",[brand name])
+
+AC_ARG_WITH(platform,
+	AS_HELP_STRING([--with-platform],[build for PLATFORM, $withval]),
+	[PLATFORM="$withval"],[PLATFORM=""])
+AC_SUBST(PLATFORM)
+AC_DEFINE_UNQUOTED(PLATFORM,"$PLATFORM",[platform])
+
+AX_CXX_COMPILE_STDCXX_17([ext],[mandatory])
 
 AC_DEFINE([DEBUG])
 
@@ -23,9 +43,12 @@ if test x"$with_binarycompatibledebug" = xyes ; then
 	AC_DEFINE([BINARY_COMPATIBLE_DEBUGLOG])
 fi
 
+AC_PATH_PROG(MSGFMT, msgfmt, AC_MSG_ERROR(Could not find msgfmt))
+
 AC_CONFIG_FILES([
 Makefile
 servicehisilicon/Makefile
 plugin/Makefile
+locale/Makefile
 ])
 AC_OUTPUT
