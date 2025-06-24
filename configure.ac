@@ -29,8 +29,6 @@ AC_ARG_WITH(platform,
 AC_SUBST(PLATFORM)
 AC_DEFINE_UNQUOTED(PLATFORM,"$PLATFORM",[platform])
 
-AX_CXX_COMPILE_STDCXX_17([ext],[mandatory])
-
 AC_DEFINE([DEBUG])
 
 AC_ARG_WITH(binarycompatibledebug,
